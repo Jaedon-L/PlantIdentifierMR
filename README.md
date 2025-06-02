@@ -11,6 +11,8 @@ The test scene can run without a headset and uses a selection of images from her
 **Common Objects and Context 2017 Dataset with Yolov8 Annotations**
 https://www.kaggle.com/datasets/sarkisshilgevorkyan/coco-dataset-for-yolo 
 
+![alt text](bus.png)
+
 ## XR Scene
 
 The XR scene must be built and deployed to a headset.
