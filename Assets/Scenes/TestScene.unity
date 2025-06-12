@@ -631,7 +631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _displayLocation: {fileID: 270828331}
-  _labelsAsset: {fileID: 4900000, guid: e167eeec84823644ba126ce551ac7852, type: 3}
+  _labelsAsset: {fileID: 4900000, guid: ec949139378de404b8a50a2e3fa80dc7, type: 3}
   _boxColor: {r: 0.18422928, g: 0.8679245, b: 0.30911523, a: 1}
   _boxTexture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   _font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -696,7 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f548b303762ff47bb9eb069de1b4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onnxModel: {fileID: 5022602860645237092, guid: 3f6df67c79fabff4186394a52b25ec66, type: 3}
+  _onnxModel: {fileID: 5022602860645237092, guid: b42cdba6da104bd4b8ed12fec0176584, type: 3}
   _iouThreshold: 0.6
   _scoreThreshold: 0.23
 --- !u!1 &787607877
@@ -745,10 +745,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputSize: {x: 640, y: 640}
   _backend: 512
-  _sentisModel: {fileID: 5022602860645237092, guid: f1c063a466db58649b6fc7b9aa20b30b, type: 3}
+  _sentisModel: {fileID: 5022602860645237092, guid: fe03e8a03acb1b74c8ce986c5806309c, type: 3}
   _layersPerFrame: 25
-  _confidenceThreshold: 0.5
-  _labelsAsset: {fileID: 4900000, guid: e167eeec84823644ba126ce551ac7852, type: 3}
+  _confidenceThreshold: 0.25
+  _labelsAsset: {fileID: 4900000, guid: ec949139378de404b8a50a2e3fa80dc7, type: 3}
   _displayLocation: {fileID: 270828331}
   _ieBoxer: {fileID: 568621722}
 --- !u!1 &832575517

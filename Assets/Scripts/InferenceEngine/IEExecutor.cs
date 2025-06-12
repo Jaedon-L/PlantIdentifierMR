@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.InferenceEngine;
 using UnityEngine;
 
@@ -10,13 +11,10 @@ public class IEExecutor : MonoBehaviour
     {
         Running = 0,
         RequestingOutput0 = 1,
-        RequestingOutput1 = 2,
-        RequestingOutput2 = 3,
-        RequestingOutput3 = 4,
-        Success = 5,
-        Error = 6,
-        Cleanup = 7,
-        Completed = 8
+        Success = 2,
+        Error = 3,
+        Cleanup = 4,
+        Completed = 5
     }
 
     [SerializeField] private Vector2Int _inputSize = new(640, 640);
@@ -27,10 +25,11 @@ public class IEExecutor : MonoBehaviour
     [SerializeField] private TextAsset _labelsAsset;
     [SerializeField] private Transform _displayLocation;
     public bool IsModelLoaded { get; private set; } = false;
+    private List<BoundingBox> _lastDetections = new List<BoundingBox>();
 
     [SerializeField] private IEBoxer _ieBoxer;
 
-    private IEMasker _ieMasker;
+    // private IEMasker _ieMasker;
     private Worker _inferenceEngineWorker;
     private IEnumerator _schedule;
     private InferenceDownloadState _downloadState = InferenceDownloadState.Running;
@@ -39,9 +38,9 @@ public class IEExecutor : MonoBehaviour
 
     private Tensor _buffer;
     private Tensor<float> _output0BoxCoords;
-    private Tensor<int> _output1LabelIds;
-    private Tensor<float> _output2Masks;
-    private Tensor<float> _output3MaskWeights;
+    // private Tensor<int> _output1LabelIds;
+    // private Tensor<float> _output2Masks;
+    // private Tensor<float> _output3MaskWeights;
 
     private bool _started = false;
     private bool _isWaitingForReadbackRequest = false;
@@ -51,7 +50,7 @@ public class IEExecutor : MonoBehaviour
         // Wait for the UI to be ready because when Sentis load the model it will block the main thread.
         yield return new WaitForSeconds(0.05f);
 
-        _ieMasker = new IEMasker(_displayLocation, _confidenceThreshold);
+        // _ieMasker = new IEMasker(_displayLocation, _confidenceThreshold);
         LoadModel();
     }
 
@@ -85,7 +84,7 @@ public class IEExecutor : MonoBehaviour
             _inputSize = new Vector2Int(inputTexture.width, inputTexture.height);
             _input = TextureConverter.ToTensor(inputTexture, 640, 640, 3);
             _schedule = _inferenceEngineWorker.ScheduleIterable(_input);
- 
+
             _downloadState = InferenceDownloadState.Running;
             _started = true;
         }
@@ -147,7 +146,7 @@ public class IEExecutor : MonoBehaviour
                         if (_output0BoxCoords.shape[0] > 0)
                         {
                             Debug.Log("Sentis: _output0BoxCoords ready");
-                            _downloadState = InferenceDownloadState.RequestingOutput1;
+                            _downloadState = InferenceDownloadState.Success;
                         }
                         else
                         {
@@ -158,90 +157,98 @@ public class IEExecutor : MonoBehaviour
                     }
                 }
                 break;
-            case InferenceDownloadState.RequestingOutput1:
-                if (!_isWaitingForReadbackRequest)
-                {
-                    _buffer = GetOutputBuffer(1) as Tensor<int>;
-                    InitiateReadbackRequest(_buffer);
-                }
-                else
-                {
-                    if (_buffer.IsReadbackRequestDone())
-                    {
-                        _output1LabelIds = _buffer.ReadbackAndClone() as Tensor<int>;
-                        _isWaitingForReadbackRequest = false;
+            // case InferenceDownloadState.RequestingOutput1:
+            //     if (!_isWaitingForReadbackRequest)
+            //     {
+            //         _buffer = GetOutputBuffer(1) as Tensor<int>;
+            //         InitiateReadbackRequest(_buffer);
+            //     }
+            //     else
+            //     {
+            //         if (_buffer.IsReadbackRequestDone())
+            //         {
+            //             _output1LabelIds = _buffer.ReadbackAndClone() as Tensor<int>;
+            //             _isWaitingForReadbackRequest = false;
 
-                        if (_output1LabelIds.shape[0] > 0)
-                        {
-                            Debug.Log("Sentis: _output1LabelIds ready");
-                            _downloadState = InferenceDownloadState.RequestingOutput2;
-                        }
-                        else
-                        {
-                            Debug.LogError("Sentis: _output1LabelIds empty");
-                            _downloadState = InferenceDownloadState.Error;
-                        }
-                        _buffer?.Dispose();
-                    }
-                }
-                break;
-            case InferenceDownloadState.RequestingOutput2:
-                if (!_isWaitingForReadbackRequest)
-                {
-                    _buffer = GetOutputBuffer(2) as Tensor<float>;
-                    InitiateReadbackRequest(_buffer);
-                }
-                else
-                {
-                    if (_buffer.IsReadbackRequestDone())
-                    {
-                        _output2Masks = _buffer.ReadbackAndClone() as Tensor<float>;
-                        _isWaitingForReadbackRequest = false;
+            //             if (_output1LabelIds.shape[0] > 0)
+            //             {
+            //                 Debug.Log("Sentis: _output1LabelIds ready");
+            //                 _downloadState = InferenceDownloadState.RequestingOutput2;
+            //             }
+            //             else
+            //             {
+            //                 Debug.LogError("Sentis: _output1LabelIds empty");
+            //                 _downloadState = InferenceDownloadState.Error;
+            //             }
+            //             _buffer?.Dispose();
+            //         }
+            //     }
+            //     break;
+            // case InferenceDownloadState.RequestingOutput2:
+            //     if (!_isWaitingForReadbackRequest)
+            //     {
+            //         _buffer = GetOutputBuffer(2) as Tensor<float>;
+            //         InitiateReadbackRequest(_buffer);
+            //     }
+            //     else
+            //     {
+            //         if (_buffer.IsReadbackRequestDone())
+            //         {
+            //             _output2Masks = _buffer.ReadbackAndClone() as Tensor<float>;
+            //             _isWaitingForReadbackRequest = false;
 
-                        if (_output2Masks.shape[0] > 0)
-                        {
-                            Debug.Log("Sentis: _output2Masks ready");
-                            _downloadState = InferenceDownloadState.RequestingOutput3;
-                        }
-                        else
-                        {
-                            Debug.LogError("Sentis: _output2Masks empty");
-                            _downloadState = InferenceDownloadState.Error;
-                        }
-                        _buffer?.Dispose();
-                    }
-                }
-                break;
-            case InferenceDownloadState.RequestingOutput3:
-                if (!_isWaitingForReadbackRequest)
-                {
-                    _buffer = GetOutputBuffer(3) as Tensor<float>;
-                    InitiateReadbackRequest(_buffer);
-                }
-                else
-                {
-                    if (_buffer.IsReadbackRequestDone())
-                    {
-                        _output3MaskWeights = _buffer.ReadbackAndClone() as Tensor<float>;
-                        _isWaitingForReadbackRequest = false;
+            //             if (_output2Masks.shape[0] > 0)
+            //             {
+            //                 Debug.Log("Sentis: _output2Masks ready");
+            //                 _downloadState = InferenceDownloadState.RequestingOutput3;
+            //             }
+            //             else
+            //             {
+            //                 Debug.LogError("Sentis: _output2Masks empty");
+            //                 _downloadState = InferenceDownloadState.Error;
+            //             }
+            //             _buffer?.Dispose();
+            //         }
+            //     }
+            //     break;
+            // case InferenceDownloadState.RequestingOutput3:
+            //     if (!_isWaitingForReadbackRequest)
+            //     {
+            //         _buffer = GetOutputBuffer(3) as Tensor<float>;
+            //         InitiateReadbackRequest(_buffer);
+            //     }
+            //     else
+            //     {
+            //         if (_buffer.IsReadbackRequestDone())
+            //         {
+            //             _output3MaskWeights = _buffer.ReadbackAndClone() as Tensor<float>;
+            //             _isWaitingForReadbackRequest = false;
 
-                        if (_output3MaskWeights.shape[0] > 0)
-                        {
-                            Debug.Log("Sentis: _output3MaskWeights ready");
-                            _downloadState = InferenceDownloadState.Success;
-                        }
-                        else
-                        {
-                            Debug.LogError("Sentis: _output3MaskWeights empty");
-                            _downloadState = InferenceDownloadState.Error;
-                        }
-                        _buffer?.Dispose();
-                    }
-                }
-                break;
+            //             if (_output3MaskWeights.shape[0] > 0)
+            //             {
+            //                 Debug.Log("Sentis: _output3MaskWeights ready");
+            //                 _downloadState = InferenceDownloadState.Success;
+            //             }
+            //             else
+            //             {
+            //                 Debug.LogError("Sentis: _output3MaskWeights empty");
+            //                 _downloadState = InferenceDownloadState.Error;
+            //             }
+            //             _buffer?.Dispose();
+            //         }
+            //     }
+            //     break;
             case InferenceDownloadState.Success:
-                List<BoundingBox> boundingBoxes = _ieBoxer.DrawBoxes(_output0BoxCoords, _output1LabelIds, _inputSize.x, _inputSize.y);
-                _ieMasker.DrawMask(boundingBoxes, _output3MaskWeights, _inputSize.x, _inputSize.y);
+                List<BoundingBox> boundingBoxes = _ieBoxer.DrawBoxes(_output0BoxCoords, _inputSize.x, _inputSize.y);
+                _lastDetections = boundingBoxes;
+                Debug.Log($"Inference completed: {_lastDetections.Count} boxes detected.");
+                // Optionally: log top few
+                if (_lastDetections.Count > 0)
+                {
+                    var best = _lastDetections.OrderByDescending(b => b.Confidence).First();
+                    Debug.Log($"Top detection: {best.ClassName} ({best.Confidence:F2})");
+                }
+                // _ieMasker.DrawMask(boundingBoxes, _output3MaskWeights, _inputSize.x, _inputSize.y);
                 _downloadState = InferenceDownloadState.Cleanup;
                 break;
             case InferenceDownloadState.Error:
@@ -251,9 +258,9 @@ public class IEExecutor : MonoBehaviour
                 _downloadState = InferenceDownloadState.Completed;
                 _started = false;
                 _output0BoxCoords?.Dispose();
-                _output1LabelIds?.Dispose();
-                _output2Masks?.Dispose();
-                _output3MaskWeights?.Dispose();
+                // _output1LabelIds?.Dispose();
+                // _output2Masks?.Dispose();
+                // _output3MaskWeights?.Dispose();
                 break;
         }
     }
@@ -275,5 +282,32 @@ public class IEExecutor : MonoBehaviour
             Debug.LogError($"InitiateReadbackRequest: No data output");
             _downloadState = InferenceDownloadState.Error;
         }
+    }
+    /// <summary>
+    /// Returns the top prediction (class name + confidence) from the last inference.
+    /// </summary>
+    public string GetTopPrediction()
+    {
+        if (_lastDetections == null || _lastDetections.Count == 0)
+            return "No detections";
+        var best = _lastDetections.OrderByDescending(b => b.Confidence).First();
+        return $"{best.ClassName}";
+    }
+
+    /// <summary>
+    /// Returns up to k top predictions as a list of (className, confidence).
+    /// </summary>
+    public List<(string className, float confidence)> GetTopKPredictions(int k = 3)
+    {
+        var results = new List<(string, float)>();
+        if (_lastDetections == null || _lastDetections.Count == 0)
+            return results;
+        foreach (var box in _lastDetections
+                     .OrderByDescending(b => b.Confidence)
+                     .Take(k))
+        {
+            results.Add((box.ClassName, box.Confidence));
+        }
+        return results;
     }
 }

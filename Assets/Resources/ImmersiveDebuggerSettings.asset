@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: ImmersiveDebuggerSettings
   m_EditorClassIdentifier: 
   debugTypes: []
-  immersiveDebuggerEnabled: 0
-  immersiveDebuggerDisplayAtStartup: 0
-  showInspectors: 0
-  showConsole: 0
+  immersiveDebuggerEnabled: 1
+  immersiveDebuggerDisplayAtStartup: 1
+  showInspectors: 1
+  showConsole: 1
   followOverride: 1
   rotateOverride: 0
-  showInfoLog: 0
+  showInfoLog: 1
   showWarningLog: 1
   showErrorLog: 1
   collapsedIdenticalLogEntries: 0
   maximumNumberOfLogEntries: 1000
-  panelDistance: 1
+  panelDistance: 2
   createEventSystem: 1
   automaticLayerCullingUpdate: 1
   panelLayer: 20
