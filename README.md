@@ -4,7 +4,8 @@ Utilizing a YOLOv8 plant leaf detection model, this unity project focuses on ide
 
 Much of this code originates from the Unity-PassthroughCameraApiSamples: https://github.com/oculus-samples/Unity-PassthroughCameraApiSamples/tree/main. || Forked from https://github.com/rikturnbull/xr-image-segmentation 
 
-**Common Objects and Context 2017 Dataset with Yolov8 Annotations**
+**YOLOv8s Leaf Detection and Classification model**
+
 https://huggingface.co/foduucom/plant-leaf-detection-and-classification
 
 Plants able to be scanned: 
