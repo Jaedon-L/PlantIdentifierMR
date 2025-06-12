@@ -8,4 +8,9 @@ Much of this code originates from the Unity-PassthroughCameraApiSamples: https:/
 https://huggingface.co/foduucom/plant-leaf-detection-and-classification
 
 Plants able to be scanned: 
-'ginger', 'banana', 'tobacco', 'ornamaental', 'rose', 'soyabean', 'papaya', 'garlic', 'raspberry', 'mango', 'cotton', 'corn', 'pomgernate', 'strawberry', 'Blueberry', 'brinjal', 'potato', 'wheat', 'olive', 'rice', 'lemon', 'cabbage', 'gauava', 'chilli', 'capcicum', 'sunflower', 'cherry', 'cassava', 'apple', 'tea', 'sugarcane', 'groundnut', 'weed', 'peach', 'coffee', 'cauliflower', 'tomato', 'onion', 'gram', 'chiku', 'jamun', 'castor', 'pea', 'cucumber', 'grape', 'cardamom'
+
+'ginger', 'banana', 'tobacco', 'ornamaental', 'rose', 'soyabean', 'papaya', 'garlic', 'raspberry', 'mango', 
+'cotton', 'corn', 'pomgernate', 'strawberry', 'Blueberry', 'brinjal', 'potato', 'wheat', 'olive', 'rice', 
+'lemon', 'cabbage', 'gauava', 'chilli', 'capcicum', 'sunflower', 'cherry', 'cassava', 'apple', 'tea', 'sugarcane', 
+'groundnut', 'weed', 'peach', 'coffee', 'cauliflower', 'tomato', 'onion', 'gram', 'chiku', 'jamun', 'castor', 'pea', 
+'cucumber', 'grape', 'cardamom'
