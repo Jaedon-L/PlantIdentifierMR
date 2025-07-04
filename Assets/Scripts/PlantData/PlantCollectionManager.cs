@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -41,6 +41,13 @@ public class PlantCollectionManager : MonoBehaviour
         PlantEntry entry = new PlantEntry(plantName, ts, thumbnailFileName);
         _entries.Add(entry);
         SaveToDisk();
+
+        // 🔔 Add this line to trigger XP and achievement checks
+        if (GamificationManager.Instance != null)
+        {
+            GamificationManager.Instance.OnPlantAdded(plantName);
+        }
+
         // Optionally fire an event or callback so UI can refresh
         OnCollectionChanged?.Invoke();
     }
