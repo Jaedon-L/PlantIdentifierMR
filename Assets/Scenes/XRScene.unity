@@ -20168,7 +20168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Eye: 1
-  RequestedResolution: {x: 0, y: 0}
+  RequestedResolution: {x: 100, y: 100}
   CameraPermissions: {fileID: 1675638407}
 --- !u!4 &1675638409
 Transform:
@@ -25773,6 +25773,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 833300100575801867, guid: cd67ac398bc01b146a27ea43cb3cc829, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 1576462246836569020, guid: e018f514cbacac347978c045b7660791, type: 3}
     - target: {fileID: 1946811682651168722, guid: cd67ac398bc01b146a27ea43cb3cc829, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -25808,6 +25812,10 @@ PrefabInstance:
     - target: {fileID: 2380823392826983859, guid: cd67ac398bc01b146a27ea43cb3cc829, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461855580564501584, guid: cd67ac398bc01b146a27ea43cb3cc829, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2838991922361110741, guid: cd67ac398bc01b146a27ea43cb3cc829, type: 3}
       propertyPath: m_AnchorMax.y
@@ -26004,6 +26012,10 @@ PrefabInstance:
     - target: {fileID: 7091210735729860824, guid: cd67ac398bc01b146a27ea43cb3cc829, type: 3}
       propertyPath: m_Name
       value: CurvedUnityCanvas Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091210735729860824, guid: cd67ac398bc01b146a27ea43cb3cc829, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7148640872909976655, guid: cd67ac398bc01b146a27ea43cb3cc829, type: 3}
       propertyPath: m_AnchorMax.y
