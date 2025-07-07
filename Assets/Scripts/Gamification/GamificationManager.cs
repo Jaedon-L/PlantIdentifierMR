@@ -4,8 +4,8 @@ using System.IO;
 using UnityEngine;
 
 /// <summary>
-/// Simple Gamification Manager: Handles XP, level, and basic achievements.
-/// Expandable for future actions (harvest, water, etc.).
+/// Gamification Manager: Handles XP, level, and basic achievements.
+/// Supports adding plants and watering. Expandable for future features.
 /// </summary>
 public class GamificationManager : MonoBehaviour
 {
@@ -20,11 +20,12 @@ public class GamificationManager : MonoBehaviour
 
     [Header("XP Rewards for Actions")]
     [SerializeField] private int xpPerPlantAdded = 10;
-    [SerializeField] private int xpPerHarvest = 15;
     [SerializeField] private int xpPerWater = 5;
 
     [Header("Achievements")]
     private HashSet<string> unlockedAchievements = new HashSet<string>();
+
+    private int waterCount = 0;
 
     private string saveFilePath;
 
@@ -45,18 +46,25 @@ public class GamificationManager : MonoBehaviour
         LoadProgress();
     }
 
-    /// <summary>
-    /// Call this when a new plant is added.
-    /// </summary>
     public void OnPlantAdded(string plantName)
     {
         AddXP(xpPerPlantAdded);
-        TryUnlockAchievement("Green Thumb"); // Example achievement
+        TryUnlockAchievement("Green Thumb");
     }
 
-    /// <summary>
-    /// Add XP and check for level up.
-    /// </summary>
+    public void OnWatered()
+    {
+        AddXP(xpPerWater);
+        waterCount++;
+
+        if (waterCount == 1)
+            TryUnlockAchievement("Water Novice");
+        if (waterCount == 5)
+            TryUnlockAchievement("Hydration Hero");
+
+        SaveProgress();
+    }
+
     public void AddXP(int amount)
     {
         xp += amount;
@@ -67,15 +75,11 @@ public class GamificationManager : MonoBehaviour
         {
             level = newLevel;
             Debug.Log($"Level up! New level: {level}");
-            // TODO: Trigger UI feedback (animation, sound, etc.)
         }
 
         SaveProgress();
     }
 
-    /// <summary>
-    /// Determines the level based on XP.
-    /// </summary>
     private int CalculateLevel()
     {
         for (int i = levelThresholds.Count - 1; i >= 0; i--)
@@ -86,23 +90,35 @@ public class GamificationManager : MonoBehaviour
         return 1;
     }
 
-    /// <summary>
-    /// Try to unlock an achievement by name.
-    /// </summary>
     private void TryUnlockAchievement(string achievementName)
     {
         if (!unlockedAchievements.Contains(achievementName))
         {
             unlockedAchievements.Add(achievementName);
             Debug.Log($"Achievement Unlocked: {achievementName}");
-            // TODO: Trigger UI popup, badge, etc.
             SaveProgress();
         }
     }
 
-    /// <summary>
-    /// Save XP, level, and achievements to disk.
-    /// </summary>
+    public List<string> GetAllAchievementNames()
+    {
+        return new List<string> { "Green Thumb", "Water Novice", "Hydration Hero" };
+    }
+
+    public bool IsAchievementUnlocked(string name)
+    {
+        return unlockedAchievements.Contains(name);
+    }
+
+    public int GetNextLevelThreshold()
+    {
+        int nextLevelIndex = level;
+        if (nextLevelIndex >= levelThresholds.Count)
+            return levelThresholds[levelThresholds.Count - 1];
+
+        return levelThresholds[nextLevelIndex];
+    }
+
     private void SaveProgress()
     {
         GamificationData data = new GamificationData
@@ -116,9 +132,6 @@ public class GamificationManager : MonoBehaviour
         Debug.Log("GamificationManager: Progress saved.");
     }
 
-    /// <summary>
-    /// Load XP, level, and achievements from disk.
-    /// </summary>
     private void LoadProgress()
     {
         if (!File.Exists(saveFilePath))
@@ -141,18 +154,8 @@ public class GamificationManager : MonoBehaviour
             Debug.LogError($"GamificationManager: Failed to load progress: {e}");
         }
     }
-
-    public int GetNextLevelThreshold()
-    {
-        if (level - 1 < levelThresholds.Count)
-            return levelThresholds[level - 1];
-        return levelThresholds[levelThresholds.Count - 1]; // return last threshold if maxed
-    }
 }
 
-/// <summary>
-/// Serializable wrapper for gamification data.
-/// </summary>
 [Serializable]
 public class GamificationData
 {
