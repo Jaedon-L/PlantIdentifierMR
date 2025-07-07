@@ -13,6 +13,7 @@ public class IEMasker
     private readonly List<Color> _maskColors = new();
 
     private float _confidenceThreshold = 0.5f;
+  
 
     public IEMasker(Transform displayLocation, float confidenceThreshold)
     {
