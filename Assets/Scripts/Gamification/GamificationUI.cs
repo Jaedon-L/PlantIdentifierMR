@@ -6,6 +6,7 @@ public class GamificationUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI xpText;
     [SerializeField] private TextMeshProUGUI achievementText;  // ➕ Add this in the Inspector
+    [SerializeField] private GameObject targetPanel;
 
     private void Update()
     {
@@ -23,6 +24,16 @@ public class GamificationUI : MonoBehaviour
         {
             bool unlocked = GamificationManager.Instance.IsAchievementUnlocked(name);
             achievementText.text += unlocked ? $"✅ {name}\n" : $"❌ {name}\n";
+        }
+              
+    }
+
+    public void ToggleVisibility()
+    {
+        if (targetPanel != null)
+        {
+            bool isActive = targetPanel.activeSelf;
+            targetPanel.SetActive(!isActive);
         }
     }
 }
