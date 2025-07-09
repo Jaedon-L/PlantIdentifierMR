@@ -1,10 +1,12 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlantCollectionUI : MonoBehaviour
 {
     [SerializeField] private RectTransform contentPanel; // assign Scroll View Content here
     [SerializeField] private GameObject itemPrefab;      // assign PlantListItem prefab
+
+    
 
     private void Start()
     {
@@ -37,6 +39,7 @@ public class PlantCollectionUI : MonoBehaviour
             if (ctrl != null)
             {
                 ctrl.Initialize(entry);
+               
             }
         }
     }
