@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ClosePanelOnToggle : MonoBehaviour
 {
-    [SerializeField] private Button buttonToClose;      
+    [SerializeField] private Button buttonToClose;
     [SerializeField] private GameObject panelToClose;
 
     private void Start()
@@ -17,4 +17,5 @@ public class ClosePanelOnToggle : MonoBehaviour
         if (panelToClose != null)
             panelToClose.SetActive(false);
     }
-}
+}    
+
