@@ -4,21 +4,24 @@ using DG.Tweening;
 public class FloatingObject : MonoBehaviour
 {
     private Tween floatTween;
-    public AudioSource audioSource; // صدا (لوپ‌دار)
-    public ParticleSystem particles; // پارتیکل سیستم
-
+    public AudioSource audioSource; 
+    public ParticleSystem particles; 
+                                     
+    private float baseY; 
     void Start()
     {
+        baseY = transform.position.y; 
         StartFloating();
     }
 
     public void StartFloating()
     {
+        transform.position = new Vector3(transform.position.x, baseY, transform.position.z);
         floatTween = transform.DOMoveY(transform.position.y + 0.2f, 1f)
                               .SetLoops(-1, LoopType.Yoyo)
                               .SetEase(Ease.InOutSine);
 
-        // شروع صدا و پارتیکل
+        
         if (audioSource != null && !audioSource.isPlaying)
             audioSource.Play();
 
@@ -40,7 +43,7 @@ public class FloatingObject : MonoBehaviour
 
     public void ResumeFloating()
     {
-        StopFloating(); // برای اطمینان
+        StopFloating(); 
         StartFloating();
     }
 }

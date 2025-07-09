@@ -8,6 +8,8 @@ public class ShowPanelOnSwipeForward : MonoBehaviour
     public OVRHand ovrHand;
     public GameObject panel;
     public Transform targetObject;
+    //new
+    [SerializeField] private float rayDistance = 0.2f; 
 
     void Start()
     {
@@ -30,12 +32,13 @@ public class ShowPanelOnSwipeForward : MonoBehaviour
     {
         HandleGesture();
 
-        // تست با کیبورد (فقط در Editor یا لپ‌تاپ)
+        
         if (Keyboard.current.pKey.wasPressedThisFrame)
         {
             Debug.Log("⌨️ Keyboard P pressed - simulating gesture.");
             SimulateGesture();
         }
+        HandleHandClick(); 
     }
 
     private void HandleGesture()
@@ -55,12 +58,12 @@ public class ShowPanelOnSwipeForward : MonoBehaviour
     {
         if (!panel.activeSelf)
         {
-            // 🟢 اگر پنل خاموشه → ظاهرش کن
+            
             panel.transform.position = targetObject.position + Vector3.up * 0.3f;
             panel.transform.rotation = Quaternion.identity;
             panel.SetActive(true);
 
-            // Scale و Fade in
+            
             panel.transform.localScale = Vector3.zero;
             panel.transform.DOScale(correctScale, 0.5f).SetEase(Ease.OutBack);
 
@@ -71,21 +74,21 @@ public class ShowPanelOnSwipeForward : MonoBehaviour
                 cg.DOFade(1, 0.5f);
             }
 
-            // متوقف کردن حرکت شناور
+            
             var floating = targetObject.GetComponent<FloatingObject>();
             if (floating != null)
                 floating.StopFloating();
         }
         else
         {
-            // 🔴 اگر پنل روشنه → مخفیش کن
+            
             HidePanel();
         }
     }
 
     private void HidePanel()
     {
-        // انیمیشن Scale کوچیک + Fade out
+        
         panel.transform.DOScale(Vector3.zero, 0.4f).SetEase(Ease.InBack);
 
         var cg = panel.GetComponent<CanvasGroup>();
@@ -94,9 +97,28 @@ public class ShowPanelOnSwipeForward : MonoBehaviour
         else
             panel.SetActive(false);
 
-        // ادامه دادن حرکت شناور
+        
         var floating = targetObject.GetComponent<FloatingObject>();
         if (floating != null)
             floating.ResumeFloating();
+    }
+    private void HandleHandClick()
+    {
+        if (ovrHand == null || !ovrHand.GetFingerIsPinching(OVRHand.HandFinger.Index)) return;
+
+        Ray ray = new Ray(ovrHand.PointerPose.position, ovrHand.PointerPose.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, rayDistance))
+        {
+            if (hit.transform == targetObject)
+            {
+                Debug.Log("🤚 Hand click on object detected!");
+                SimulateGesture();
+            }
+        }
+    }
+    public void TogglePanelFromButton()
+    {
+        Debug.Log("🟢 Button clicked - toggling panel");
+        SimulateGesture();
     }
 }
