@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -150,6 +150,11 @@ public class WateringReminder : MonoBehaviour
         if (daysInput != null) daysInput.text = "";
         if (hoursInput != null) hoursInput.text = "";
         if (minutesInput != null) minutesInput.text = "";
+
+        if (GamificationManager.Instance != null)
+        {
+            GamificationManager.Instance.OnWatered();
+        }
     }
     public void OnTogglePanelClicked()
     {
@@ -159,4 +164,3 @@ public class WateringReminder : MonoBehaviour
     }
 
 }
-
