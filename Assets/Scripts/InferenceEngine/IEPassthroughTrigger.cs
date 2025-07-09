@@ -18,6 +18,16 @@ public class IEPassthroughTrigger : MonoBehaviour
     private bool _scanInProgress = false;
     [SerializeField] private GameObject YesNoMenu;
 
+    //new
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip successClip;
+    [SerializeField] private AudioClip failClip;
+
+    [SerializeField] private GameObject successLightFX;
+    [SerializeField] private GameObject failLightFX;
+    [SerializeField] private AudioClip scanClip; 
+    [SerializeField] private AudioClip countdownClip; 
+    //new
     private bool _loggedMissingReferences = false;
 
     private IEnumerator Start()
@@ -105,6 +115,7 @@ public class IEPassthroughTrigger : MonoBehaviour
     /// <summary>
     /// Called when user taps Scan button.
     /// </summary>
+    [ContextMenu("scan button")]
     public void OnScanButtonClicked()
     {
         StartCoroutine(StartCountdownBeforeScan(3));
@@ -153,6 +164,8 @@ public class IEPassthroughTrigger : MonoBehaviour
             scanButton.SetActive(false);
         else
             Debug.LogWarning("IEPassthroughTrigger: scanButton GameObject is not assigned.");
+        if (audioSource != null && countdownClip != null)
+            audioSource.PlayOneShot(countdownClip);
         for (int i = seconds; i > 0; i--)
         {
             if (resultsText != null)
@@ -162,6 +175,9 @@ public class IEPassthroughTrigger : MonoBehaviour
         // Countdown complete
         if (resultsText != null)
             resultsText.text = "Scanning...";
+        // Play scan sound when the scan actually starts
+        if (audioSource != null && scanClip != null)
+            audioSource.PlayOneShot(scanClip);
 
         // Trigger the actual inference in Update()
         _scanRequested = true;
@@ -199,25 +215,29 @@ public class IEPassthroughTrigger : MonoBehaviour
         {
             if (resultsText != null)
                 resultsText.text = "No detections";
-            else
-                Debug.LogWarning("IEPassthroughTrigger: resultsText is null; cannot display 'No detections'.");
 
-            // Ensure Yes/No menu is hidden
             if (YesNoMenu != null)
                 YesNoMenu.SetActive(false);
 
-            // Re-enable the scan button so user can try again
             if (scanButton != null)
                 scanButton.SetActive(true);
-            else
-                Debug.LogWarning("IEPassthroughTrigger: scanButton is not assigned.");
 
-            // Optionally hide scanCanvas overlay if still active
             if (scanCanvas != null)
                 scanCanvas.enabled = false;
-                
+            //t
             if (results != null)
-                results.enabled = false;
+                results.enabled = true;
+
+            // 🔴 Play FAIL sound + red FX
+            if (audioSource != null && failClip != null)
+                audioSource.PlayOneShot(failClip);
+
+            if (failLightFX != null)
+                failLightFX.SetActive(true);
+            if (successLightFX != null)
+                successLightFX.SetActive(false);
+            // StartCoroutine(HideFXAfterDelay(2f));
+            StartCoroutine(ShowFailFXThenDisableResults(2f)); 
 
             _scanInProgress = false;
             yield break;
@@ -228,6 +248,16 @@ public class IEPassthroughTrigger : MonoBehaviour
             resultsText.text = $"Detected: {top}";
         else
             Debug.LogWarning("IEPassthroughTrigger: resultsText is null; cannot display detected result.");
+        // ✅ Play SUCCESS sound + green FX
+        if (audioSource != null && successClip != null)
+            audioSource.PlayOneShot(successClip);
+
+        if (successLightFX != null)
+            successLightFX.SetActive(true);
+        if (failLightFX != null)
+            failLightFX.SetActive(false);
+        // StartCoroutine(HideFXAfterDelay(2f));
+        StartCoroutine(HideFXAfterDelay(2f)); 
 
         // Show Yes/No menu for user to confirm adding
         if (YesNoMenu != null)
@@ -241,6 +271,9 @@ public class IEPassthroughTrigger : MonoBehaviour
 
         _scanInProgress = false;
         Debug.Log("Scan complete, showing Yes/No menu.");
+        //new
+        StartCoroutine(HideFXAfterDelay(2f));
+        //StartCoroutine(ShowFailFXThenDisableResults(2f)); // new
     }
     /// <summary>
     /// Called when user taps “Yes” to add to collection.
@@ -348,5 +381,28 @@ public class IEPassthroughTrigger : MonoBehaviour
             Debug.LogWarning("IEPassthroughTrigger: resultsText TextMeshProUGUI is not assigned in Inspector.");
         if (YesNoMenu == null)
             Debug.LogWarning("IEPassthroughTrigger: YesNoMenu GameObject is not assigned in Inspector.");
+    }
+    private IEnumerator HideFXAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (successLightFX != null)
+            successLightFX.SetActive(false);
+
+        if (failLightFX != null)
+            failLightFX.SetActive(false);
+    }
+    private IEnumerator ShowFailFXThenDisableResults(float delay)
+    {
+        if (failLightFX != null)
+            failLightFX.SetActive(true);
+
+        yield return new WaitForSeconds(delay);
+
+        if (failLightFX != null)
+            failLightFX.SetActive(false);
+
+        if (results != null)
+            results.enabled = false;
     }
 }

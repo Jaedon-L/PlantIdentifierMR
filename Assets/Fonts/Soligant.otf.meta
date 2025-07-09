@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b624d2af8f034cb4787d5fc5f98d0819
+guid: e1b1157b51d889149952412b7dbec673
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Mogilte
+  - Soligant
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
