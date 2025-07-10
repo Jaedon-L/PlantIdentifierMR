@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -48,10 +48,8 @@ public class GamificationManager : MonoBehaviour
 
     public void OnPlantAdded(string plantName)
     {
-        AddXP(xpPerPlantAdded);  // XP increases every time you add a plant
-        TryUnlockAchievement("Green Thumb");  // Unlock only once
-        NotifyUI();  // ➕ Refresh UI every time
-        SaveProgress();  // ➕ Save the XP increase even if the achievement doesn’t unlock
+        AddXP(xpPerPlantAdded);
+        TryUnlockAchievement("Green Thumb");
     }
 
     public void OnWatered()
@@ -98,9 +96,6 @@ public class GamificationManager : MonoBehaviour
         {
             unlockedAchievements.Add(achievementName);
             Debug.Log($"Achievement Unlocked: {achievementName}");
-
-            NotifyUI(); // ➕ Refresh UI after unlocking
-
             SaveProgress();
         }
     }
@@ -122,19 +117,6 @@ public class GamificationManager : MonoBehaviour
             return levelThresholds[levelThresholds.Count - 1];
 
         return levelThresholds[nextLevelIndex];
-    }
-
-    /// <summary>
-    /// ➕ This method finds the GamificationUI in the scene and refreshes it.
-    /// In a larger project you'd replace this with proper event handling.
-    /// </summary>
-    private void NotifyUI()
-    {
-        var ui = FindObjectOfType<GamificationUI>();
-        if (ui != null)
-        {
-            ui.RefreshUI();
-        }
     }
 
     private void SaveProgress()
