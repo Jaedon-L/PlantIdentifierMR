@@ -22,6 +22,7 @@ TagManager:
   - QDSUITextInvertedColor
   - QDSUITextSecondaryInvertedColor
   - QDSUIToggleCheckboxRadio
+  - SpatialAnchor
   layers:
   - Default
   - TransparentFX

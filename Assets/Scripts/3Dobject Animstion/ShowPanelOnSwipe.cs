@@ -60,7 +60,7 @@ public class ShowPanelOnSwipeForward : MonoBehaviour
         {
             
             panel.transform.position = targetObject.position + Vector3.up * 0.3f;
-            panel.transform.rotation = Quaternion.identity;
+            // panel.transform.rotation = Quaternion.identity;
             panel.SetActive(true);
 
             
@@ -116,6 +116,7 @@ public class ShowPanelOnSwipeForward : MonoBehaviour
             }
         }
     }
+    [ContextMenu("toggle")]
     public void TogglePanelFromButton()
     {
         Debug.Log("🟢 Button clicked - toggling panel");

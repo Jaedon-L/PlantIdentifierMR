@@ -156,6 +156,7 @@ public class WateringReminder : MonoBehaviour
             GamificationManager.Instance.OnWatered();
         }
     }
+    [ContextMenu("toggle")]
     public void OnTogglePanelClicked()
     {
         panelVisible = !panelVisible;
