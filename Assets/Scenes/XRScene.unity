@@ -8050,6 +8050,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green
       objectReference: {fileID: 0}
+    - target: {fileID: 4940457849253876848, guid: da35397ec5579c8438f3d6a18ea2ac58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14591,7 +14595,7 @@ MonoBehaviour:
   _ieExecutor: {fileID: 787607880}
   _ieBoxer: {fileID: 568621722}
   scanCanvas: {fileID: 494786732}
-  scanButton: {fileID: 136309356893251363}
+  scanButton: {fileID: 610744743110719523}
   results: {fileID: 1739804872}
   resultsText: {fileID: 733080951}
   YesNoMenu: {fileID: 8484313877359390805}
