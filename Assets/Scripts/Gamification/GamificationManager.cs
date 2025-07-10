@@ -26,6 +26,7 @@ public class GamificationManager : MonoBehaviour
     private HashSet<string> unlockedAchievements = new HashSet<string>();
 
     private int waterCount = 0;
+    private int loginCount = 0; // ➕ NEW: Count how many times app opened
 
     private string saveFilePath;
 
@@ -44,12 +45,30 @@ public class GamificationManager : MonoBehaviour
 
         saveFilePath = Path.Combine(Application.persistentDataPath, "gamification_data.json");
         LoadProgress();
+
+        OnAppOpened(); // ➕ Call app open logic on start
+    }
+
+    public void OnAppOpened()
+    {
+        AddXP(1); // ➕ Give XP every open
+        loginCount++;
+
+        if (loginCount == 1)
+            TryUnlockAchievement("First Step");
+        if (loginCount == 15)
+            TryUnlockAchievement("Plant Lover");
+
+        SaveProgress();
+        NotifyUI();
     }
 
     public void OnPlantAdded(string plantName)
     {
         AddXP(xpPerPlantAdded);
         TryUnlockAchievement("Green Thumb");
+        SaveProgress();
+        NotifyUI();
     }
 
     public void OnWatered()
@@ -63,6 +82,7 @@ public class GamificationManager : MonoBehaviour
             TryUnlockAchievement("Hydration Hero");
 
         SaveProgress();
+        NotifyUI();
     }
 
     public void AddXP(int amount)
@@ -77,6 +97,7 @@ public class GamificationManager : MonoBehaviour
             Debug.Log($"Level up! New level: {level}");
         }
 
+        NotifyUI();
         SaveProgress();
     }
 
@@ -97,15 +118,14 @@ public class GamificationManager : MonoBehaviour
             unlockedAchievements.Add(achievementName);
             Debug.Log($"Achievement Unlocked: {achievementName}");
 
-            NotifyUI(); // ➕ Refresh UI after unlocking
-
+            NotifyUI();
             SaveProgress();
         }
     }
 
     public List<string> GetAllAchievementNames()
     {
-        return new List<string> { "Green Thumb", "Water Novice", "Hydration Hero" };
+        return new List<string> { "Green Thumb", "Water Novice", "Hydration Hero", "First Step", "Plant Lover" }; // ➕ Add new achievement names
     }
 
     public bool IsAchievementUnlocked(string name)
@@ -122,10 +142,6 @@ public class GamificationManager : MonoBehaviour
         return levelThresholds[nextLevelIndex];
     }
 
-    /// <summary>
-    /// ➕ This method finds the GamificationUI in the scene and refreshes it.
-    /// In a larger project you'd replace this with proper event handling.
-    /// </summary>
     private void NotifyUI()
     {
         var ui = FindObjectOfType<GamificationUI>();
@@ -141,7 +157,8 @@ public class GamificationManager : MonoBehaviour
         {
             xp = this.xp,
             level = this.level,
-            achievements = new List<string>(unlockedAchievements)
+            achievements = new List<string>(unlockedAchievements),
+            loginCount = this.loginCount // ➕ Save login count
         };
         string json = JsonUtility.ToJson(data, prettyPrint: true);
         File.WriteAllText(saveFilePath, json);
@@ -163,6 +180,7 @@ public class GamificationManager : MonoBehaviour
             xp = data.xp;
             level = data.level;
             unlockedAchievements = new HashSet<string>(data.achievements);
+            loginCount = data.loginCount; // ➕ Load login count
             Debug.Log("GamificationManager: Progress loaded.");
         }
         catch (Exception e)
@@ -178,4 +196,5 @@ public class GamificationData
     public int xp;
     public int level;
     public List<string> achievements;
+    public int loginCount; // ➕ Add to save the login count
 }

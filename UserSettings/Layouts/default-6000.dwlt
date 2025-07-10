@@ -43,7 +43,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 201
+  controlID: 197
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -966,9 +966,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -0.005520251, y: 0.14462572, z: 0.33237848}
+    m_Target: {x: 0.12364662, y: 0.14284615, z: 0.31951767}
     speed: 2
-    m_Value: {x: -0.7952025, y: -0.10700145, z: 1.244275}
+    m_Value: {x: 0.12364662, y: 0.14284615, z: 0.31951767}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1014,13 +1014,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.014117649, y: -0.8778987, z: -0.47897002, w: -0.021674357}
+    m_Target: {x: 0.0054868176, y: -0.88029516, z: -0.47519016, w: -0.0058834287}
     speed: 2
-    m_Value: {x: 0.085415706, y: -0.04504453, z: -0.001487245, w: -0.99532557}
+    m_Value: {x: 0.0054846522, y: -0.8799477, z: -0.47500262, w: -0.005881107}
   m_Size:
-    m_Target: 0.12644684
+    m_Target: 0.05906382
     speed: 2
-    m_Value: 0.9819528
+    m_Value: 0.05906382
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1095,7 +1095,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 96b9ffffaeb9ffffe0caffff4ae9ffff56e9ffffdef0ffffe0f0ffffccf6ffff1e0a0100280a01002c0a0100a20a0100
+      m_ExpandedIDs: 3cbfffff54bfffff86d0ffff0eebffff6eebffff7aebffff7cebffffe8f3ffffdaf6ffff1820010022200100262001009c200100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1167,7 +1167,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/prefabs
+    - Assets/Scripts/Gamification
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1177,16 +1177,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/prefabs
+  - Assets/Scripts/Gamification
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\XRBootcamp\MVP2\PlantIdentifierMR
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 91}
-    m_SelectedIDs: acfe0000
-    m_LastClickedID: 65196
-    m_ExpandedIDs: 000000001ce20000b4fe000000ca9a3b
+    m_SelectedIDs: 5c2f0100
+    m_LastClickedID: 77660
+    m_ExpandedIDs: 0000000008e2000078fe000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1215,7 +1215,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001ce20000
+    m_ExpandedIDs: 0000000008e20000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

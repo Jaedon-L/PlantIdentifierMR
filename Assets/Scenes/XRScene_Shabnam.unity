@@ -26217,6 +26217,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
+    - target: {fileID: 2276963541315766527, guid: aba9304ba2eefa2419a2f5bbd8dc061b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276963541315766527, guid: aba9304ba2eefa2419a2f5bbd8dc061b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 149.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668554435187644602, guid: aba9304ba2eefa2419a2f5bbd8dc061b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.000007829652
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668554435187644602, guid: aba9304ba2eefa2419a2f5bbd8dc061b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 123.99996
+      objectReference: {fileID: 0}
+    - target: {fileID: 3176824546371112922, guid: aba9304ba2eefa2419a2f5bbd8dc061b, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3176824546371112922, guid: aba9304ba2eefa2419a2f5bbd8dc061b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3176824546371112922, guid: aba9304ba2eefa2419a2f5bbd8dc061b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724820534900764806, guid: aba9304ba2eefa2419a2f5bbd8dc061b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724820534900764806, guid: aba9304ba2eefa2419a2f5bbd8dc061b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 85.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739357189609611651, guid: aba9304ba2eefa2419a2f5bbd8dc061b, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739357189609611651, guid: aba9304ba2eefa2419a2f5bbd8dc061b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739357189609611651, guid: aba9304ba2eefa2419a2f5bbd8dc061b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
