@@ -1,0 +1,364 @@
+{
+  "entries": [
+    {
+      "name": "Banana",
+      "info": {
+        "watering": "3-4 times per week",
+        "light": "6+ hours per day",
+        "fertilizer": "2-4 times per year"
+      }
+    },
+    {
+      "name": "Tobacco",
+      "info": {
+        "watering": "3-4 times per week",
+        "light": "6+ hours per day",
+        "fertilizer": "1-2 times per season"
+      }
+    },
+    {
+      "name": "Ornamental",
+      "info": {
+        "watering": "2-4 times per week",
+        "light": "4-8+ hours per day",
+        "fertilizer": "1-4 times per year"
+      }
+    },
+    {
+      "name": "Rose",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6+ hours per day",
+        "fertilizer": "2-3 times per year"
+      }
+    },
+    {
+      "name": "Soyabean",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1-2 times per season"
+      }
+    },
+    {
+      "name": "Papaya",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "3-4 times per year"
+      }
+    },
+    {
+      "name": "Garlic",
+      "info": {
+        "watering": "1 time per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1-2 times per season"
+      }
+    },
+    {
+      "name": "Raspberry",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1 time per year"
+      }
+    },
+    {
+      "name": "Mango",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "8-10 hours per day",
+        "fertilizer": "3-4 times per year"
+      }
+    },
+    {
+      "name": "Cotton",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "2-3 times per season"
+      }
+    },
+    {
+      "name": "Corn",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "2-3 times per season"
+      }
+    },
+    {
+      "name": "Pomegranate",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1 time per year"
+      }
+    },
+    {
+      "name": "Strawberry",
+      "info": {
+        "watering": "3-4 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "2-3 times per year"
+      }
+    },
+    {
+      "name": "Blueberry",
+      "info": {
+        "watering": "1-2 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "2-3 times per year"
+      }
+    },
+    {
+      "name": "Brinjal",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "3-4 times per season"
+      }
+    },
+    {
+      "name": "Potato",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1-2 times per season"
+      }
+    },
+    {
+      "name": "Wheat",
+      "info": {
+        "watering": "1-2 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1-2 times per season"
+      }
+    },
+    {
+      "name": "Olive",
+      "info": {
+        "watering": "1 time per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1 time per year"
+      }
+    },
+    {
+      "name": "Rice",
+      "info": {
+        "watering": "Daily",
+        "light": "8-10 hours per day",
+        "fertilizer": "2-3 times per season"
+      }
+    },
+    {
+      "name": "Lemon",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "3-4 times per year"
+      }
+    },
+    {
+      "name": "Cabbage",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "2-3 times per season"
+      }
+    },
+    {
+      "name": "Guava",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "3-4 times per year"
+      }
+    },
+    {
+      "name": "Chilli",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "2-3 times per season"
+      }
+    },
+    {
+      "name": "Capsicum",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "2-3 times per season"
+      }
+    },
+    {
+      "name": "Sunflower",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1-2 times per season"
+      }
+    },
+    {
+      "name": "Cherry",
+      "info": {
+        "watering": "1-2 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1 time per year"
+      }
+    },
+    {
+      "name": "Cassava",
+      "info": {
+        "watering": "1-2 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "2-3 times per season"
+      }
+    },
+    {
+      "name": "Apple",
+      "info": {
+        "watering": "2–3 times per week",
+        "light": "6–8 hours per day",
+        "fertilizer": "2 times per year"
+      }
+    },
+    {
+      "name": "Tea",
+      "info": {
+        "watering": "3-4 times per week",
+        "light": "4-8 hours per day",
+        "fertilizer": "3-4 times per year"
+      }
+    },
+    {
+      "name": "Sugarcane",
+      "info": {
+        "watering": "3-4 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "2-3 times per season"
+      }
+    },
+    {
+      "name": "Groundnut",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1-2 times per season"
+      }
+    },
+    {
+      "name": "Weed",
+      "info": {
+        "watering": "Varies by species",
+        "light": "Varies by species",
+        "fertilizer": "0 times per year"
+      }
+    },
+    {
+      "name": "Peach",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "2-3 times per year"
+      }
+    },
+    {
+      "name": "Coffee",
+      "info": {
+        "watering": "1-2 times per week",
+        "light": "4-6 hours per day",
+        "fertilizer": "1 time per year"
+      }
+    },
+    {
+      "name": "Cauliflower",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1-2 times per season"
+      }
+    },
+    {
+      "name": "Tomato",
+      "info": {
+        "watering": "2–3 times per week",
+        "light": "8–10 hours per day",
+        "fertilizer": "3–4 times per year"
+      }
+    },
+    {
+      "name": "Onion",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1-2 times per season"
+      }
+    },
+    {
+      "name": "Gram",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "4-6 hours per day",
+        "fertilizer": "1 time per year"
+      }
+    },
+    {
+      "name": "Chiku",
+      "info": {
+        "watering": "1-2 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1 time per year"
+      }
+    },
+    {
+      "name": "Jamun",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1 time per year"
+      }
+    },
+    {
+      "name": "Castor",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1 time per year"
+      }
+    },
+    {
+      "name": "Pea",
+      "info": {
+        "watering": "2-3 times per week",
+        "light": "4-8 hours per day",
+        "fertilizer": "1-2 times per season"
+      }
+    },
+    {
+      "name": "Cucumber",
+      "info": {
+        "watering": "3-4 times per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "2-3 times per season"
+      }
+    },
+    {
+      "name": "Grape",
+      "info": {
+        "watering": "1 time per week",
+        "light": "6-8 hours per day",
+        "fertilizer": "1 time per year"
+      }
+    },
+    {
+      "name": "Cardamom",
+      "info": {
+        "watering": "3-4 times per week",
+        "light": "0-4 hours per day",
+        "fertilizer": "2 times per year"
+      }
+    }
+  ]
+}

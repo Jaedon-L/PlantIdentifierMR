@@ -64,3 +64,4 @@ crashlytics-build.properties
 
 # Other
 .utmp
+/Assets/StreamingAssets/undreamai-v1.2.6-llamacpp
